@@ -1,16 +1,20 @@
 const express = require('express');
-const routes = express.Router();
-import {Response, Request} from 'express';
-const {getProjects, getProject, createProject, updateProject, deleteProject} =  require('../controllers/projectControllers');
+const router = express.Router();
+const {
+  getProjects, 
+  getProject, 
+  createProject, 
+  updateProject, 
+  deleteProject
+} =  require('../controllers/projectControllers');
 
-routes.get('/', getProjects);
+router.route('/').get(getProject).post(createProject);
+// router.get('/', getProjects);
+// router.post('/', createProject);
 
-routes.post('/', createProject);
+router.route('/:id').get(getProject).put(updateProject).delete(deleteProject);
+// router.get('/:id', getProject);
+// router.put('/:id', updateProject);
+// router.delete('/:id', deleteProject);
 
-routes.get('/:id', getProject);
-
-routes.put('/:id', updateProject);
-
-routes.delete('/:id', deleteProject);
-
-module.exports = routes;
+module.exports = router;

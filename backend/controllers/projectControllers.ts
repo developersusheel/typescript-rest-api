@@ -1,10 +1,15 @@
 import {Response, Request} from 'express';
+import fetch from 'cross-fetch';
+
 
 //@desc Get all projects from
 //@route GET /api/projects
 //@access Public
 const getProjects = (req:Request, res:Response) =>{
-  res.status(200).json({message: 'Get all projects'})
+  // res.status(200).json({message: 'Get all projects'})
+  fetch('https://organic-backend.test/wp-json/wp-api-menus/v2/menus/')
+  .then(response => response.json())
+  .then(data => console.log(JSON.stringify(data)))
 };
 
 //@desc Create a new project
@@ -22,7 +27,11 @@ const createProject = (req:Request, res:Response) =>{
 //@route GET /api/projects/:id
 //@access Public
 const getProject = (req:Request, res:Response) =>{
-  res.json({message: `Get project ${req.params.id}`});
+  // res.json({message: `Get project ${req.params.id}`});
+  fetch('http://organic-backend.test/wp-json/wp-api-menus/v2/menus/')
+  .then(response => response.json())
+  .then(data => res.json(data))
+  // res.json({message: `Get project ${req.params.id}`});
 };
 
 //@desc Update a project

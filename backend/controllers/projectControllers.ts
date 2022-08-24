@@ -11,7 +11,11 @@ const getProjects = (req:Request, res:Response) =>{
 //@route GET /api/projects
 //@access Private
 const createProject = (req:Request, res:Response) =>{
-  res.json({message: 'Create a project'})
+  if(!req.body.title){
+    res.status(400)
+    throw new Error('Title is required');
+  }
+  res.status(200).json({message: 'Create a project'})
 };
 
 //@desc Get a project a ID

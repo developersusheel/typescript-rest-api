@@ -1,8 +1,6 @@
 import { UserType } from "../types/userTypes";
 import HttpException from "../utils/httpException";
 import { emailRegex } from "../schema/userSchema";
-import jwt from "jsonwebtoken";
-import bcryptjs from "bcryptjs";
 
 
 export async function sanitizeUser(users: UserType): Promise<UserType> {
@@ -91,8 +89,8 @@ async function sanitizePassword(password: string): Promise<string> {
     throw new HttpException("password length must be less that 50 characters",400);
   }
 
-  const salt = await bcryptjs.genSalt(10);
-  const hashedPassword = await bcryptjs.hash(password, salt);
+  // const salt = await bcryptjs.genSalt(10);
+  // const hashedPassword = await bcryptjs.hash(password, salt);
   
-  return hashedPassword;
+  return password;
 }

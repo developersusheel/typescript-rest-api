@@ -7,7 +7,7 @@ export interface IProjectTypeSchema extends ProjectType{
 
 const projectSchema = new Schema<ProjectType>({
   title: {
-    type: 'string',
+    type: String,
     required: true,
     unique: true
   }

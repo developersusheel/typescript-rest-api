@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 const {
   getProjectsHandler, 
@@ -6,7 +6,7 @@ const {
   createProjectHandler, 
   updateProjectHandler, 
   deleteProjectHandler
-} =  require('../controllers/projectControllers');
+} =  require('../controllers/projectController');
 
 router.route('/').get(getProjectsHandler).post(createProjectHandler);
 // router.get('/', getProjects);

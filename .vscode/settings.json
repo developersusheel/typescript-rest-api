@@ -1,0 +1,18 @@
+{
+  "workbench.colorCustomizations": {
+    "[CodeSandbox Legacy]": {
+      "titleBar.activeBackground": "#000",
+      "titleBar.activeForeground": "#fff",
+      "activityBar.background": "#000",
+      "activityBar.activeBackground": "#000",
+      "sideBar.background": "#000",
+      "editor.background": "#000",
+      "tab.activeBorder": "#000",
+      "tab.inactiveBackground": "#111",
+      "tab.inactiveForeground": "#fff"
+    },
+    "activityBar.background": "#283203",
+    "titleBar.activeBackground": "#384505",
+    "titleBar.activeForeground": "#F7FDE1"
+  }
+}

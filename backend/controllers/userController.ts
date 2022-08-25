@@ -4,6 +4,7 @@ import {
   deleteUser,
   getUserById,
   getUsers,
+  loginUser,
   updateUser,
 } from "../services/userServices";
 // import fetch from 'cross-fetch';
@@ -25,6 +26,15 @@ const createUserHandler = asyncHandler(async (req: Request, res: Response) => {
   const createdUser = await createUser(req.body);
   res.status(201).json(createdUser);
 });
+
+//@desc Login a new User
+//@route POST /api/Login
+//@access Public
+const loginUserHandler = asyncHandler(async (req: Request, res: Response) => {
+  const loginUserHandler = await loginUser(req.body.email, req.body.password);
+  res.status(201).json(loginUserHandler);
+});
+
 //@desc Get a user a ID
 //@route GET /api/users/:id
 //@access Public
@@ -55,4 +65,5 @@ module.exports = {
   getUserHandler,
   updateUserHandler,
   deleteUserHandler,
+  loginUserHandler
 };

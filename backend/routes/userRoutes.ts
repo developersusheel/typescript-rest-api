@@ -7,9 +7,11 @@ const {
   getUserHandler,
   updateUserHandler,
   deleteUserHandler,
+  loginUserHandler
 } = require("../controllers/userController");
 
 router.route("/").get(getUsersHandler).post(createUserHandler);
+router.route("/login").post(loginUserHandler);
 router
   .route("/:id")
   .get(getUserHandler)

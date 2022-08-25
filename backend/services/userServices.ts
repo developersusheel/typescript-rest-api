@@ -1,8 +1,9 @@
+import bcrypt from "bcryptjs";
 import userModel from "../models/userModel";
 import { UserType } from "../types/userTypes";
 import { IUserTypeSchema } from "../schema/userSchema";
 import { checkIdValidObjectId } from "../database/db";
-import { sanitizeUser } from "../sanitizers/sanitizeUser";
+import { sanitizeUser, sanitizeLoginUser } from "../sanitizers/sanitizeUser";
 
 export async function getUsers(): Promise<UserType[]> {
   try {
@@ -15,7 +16,8 @@ export async function getUsers(): Promise<UserType[]> {
 }
 
 export async function createUser(user: UserType): Promise<UserType> {
-  const sanitizeuser = sanitizeUser(user);
+  const sanitizeuser = await sanitizeUser(user);
+
   try {
     const newUser = await userModel.create(sanitizeuser);
     if (!newUser) throw new Error("User not created");
@@ -31,6 +33,21 @@ export async function getUserById(userId: string): Promise<IUserTypeSchema> {
     const user = await userModel.findById(userId);
     if (!user) throw new Error("User not found");
     return user;
+  } catch (err) {
+    throw new Error(`Error finding user ${err.message}`);
+  }
+}
+
+export async function loginUser(email: string, password: string): Promise<UserType>{
+  const sanitizeUser = await sanitizeLoginUser(email, password);
+  try {
+    const sanitizeUser = await userModel.findOne({email});
+    if (!sanitizeUser) throw new Error("User not found");
+
+    const isPasswordValid = await bcrypt.compare(password, sanitizeUser.password);
+    if(!isPasswordValid)  throw new Error(`Password is invalid`);
+
+    return sanitizeUser;
   } catch (err) {
     throw new Error(`Error finding user ${err.message}`);
   }

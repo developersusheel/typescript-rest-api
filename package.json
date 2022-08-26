@@ -7,7 +7,8 @@
     "start": "node backend/server.ts",
     "dev": "nodemon backend/server.ts",
     "lint": "eslint --ext .js,.ts .",
-    "lint-fix": "eslint --ext .js,.ts . --fix"
+    "lint-fix": "eslint --ext .js,.ts . --fix",
+    "prepare": "husky install"
   },
   "author": "Susheel Kumar",
   "license": "ISC",
@@ -33,6 +34,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "husky": "^8.0.0"
   }
 }
